@@ -52,10 +52,11 @@ class ChristaupherPlayer extends Player
 
 
         // setting the variables i will need
-        $opponent_choices = $this->result->getChoicesFor($this->opponentSide);
-        $opponent_scores = $this->result->getScoresFor($this->opponentSide);
-        $my_choices = $this->result->getChoicesFor($this->mySide);
-        $my_scores = $this->result->getScoresFor($this->mySide);
+        
+        $this->$opponent_choices = $this->result->getChoicesFor($this->opponentSide);
+        $this->$opponent_scores = $this->result->getScoresFor($this->opponentSide);
+        $this->$my_choices = $this->result->getChoicesFor($this->mySide);
+        $this->$my_scores = $this->result->getScoresFor($this->mySide);
 
 
         // compute the average and if the score of friend is higher choose friend
