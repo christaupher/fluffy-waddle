@@ -44,7 +44,7 @@ class ChristaupherPlayer extends Player
     {
 
         // part of the dream team, we will help each other
-        $dream_team = array('PacoTheGreat', 'FelixDupriez', 'Shiinsekai', 'Ghope', 'Etienneelg', 'Christaupher');
+        $dream_team = array('PacoTheGreat', 'FelixDupriez', 'Shiinsekai', 'Ghope', 'Etienneelg', 'Benli06');
 
         $oppName = $this->result->getStatsFor($this->opponentSide)['name'];
                 if (in_array($oppName, $dream_team))
