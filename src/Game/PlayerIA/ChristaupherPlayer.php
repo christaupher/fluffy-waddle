@@ -18,11 +18,10 @@ class ChristaupherPlayer extends Player
     public function getChoice()
     {
 
-        if ($this->result->getLastChoiceFor($this->mySide) == 'friend')
-        {
-            return parent::foeChoice();
+        if ($this->result->getLastChoiceFor($this->mySide) == 'friend'){
+            return parent::friendChoice();
         }
-        return parent::friendChoice();
+        return parent::foeChoice();
 
         
 
