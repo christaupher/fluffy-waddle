@@ -17,14 +17,15 @@ class ChristaupherPlayer extends Player
     protected $opponent_choices = array();
 	protected $opponent_scores = array();
 	protected $my_choices = array();
-	protected $my_scores = array();
+    protected $my_scores = array();
 
-
+    // this is my starting choices I use more foe than friends
     private $start_choices = array(
 		'friend', 'friend', 'foe', 'foe',
 		'foe', 'foe', 'foe', 'foe', 'foe', 'foe'
     );
     
+    // function to compute the average between my choices and his choices
     private function calculate_average($choice)
 	{
 		$total_score = 0;
@@ -38,13 +39,26 @@ class ChristaupherPlayer extends Player
 		return $total_score / $n;
 	}
 
+
     public function getChoice()
     {
+
+        // part of the dream team, we will help each other
+        $dream_team = array('PacoTheGreat', 'FelixDupriez', 'Shiinsekai', 'Ghope', 'Etienneelg', 'Christaupher');
+
+        $oppName = $this->result->getStatsFor($this->opponentSide)['name'];
+                if (in_array($oppName, $dream_team))
+                    return parent::friendChoice();
+
+
+        // setting the variables i will need
         $opponent_choices = $this->result->getChoicesFor($this->opponentSide);
         $opponent_scores = $this->result->getScoresFor($this->opponentSide);
         $my_choices = $this->result->getChoicesFor($this->mySide);
         $my_scores = $this->result->getScoresFor($this->mySide);
 
+
+        // compute the average and if the score of friend is higher choose friend
         if (isset($this->start_choices[count($my_choices)]))
             return $this->start_choices[count($my_choices)];
         $friend_average = $this->calculate_average('friend');
