@@ -29,7 +29,7 @@ class ChristaupherPlayer extends Player
     private function calculate_average($choice)
 	{
 		$total_score = 0;
-		$n = 0;
+		$n = 1;
 		foreach ($this->my_choices as $i => $my_choice)
 			if ($my_choice === $choice)
 			{
@@ -62,6 +62,7 @@ class ChristaupherPlayer extends Player
         // compute the average and if the score of friend is higher choose friend
         if (isset($this->start_choices[count($my_choices)]))
             return $this->start_choices[count($my_choices)];
+
         $friend_average = $this->calculate_average('friend');
         $foe_average = $this->calculate_average('foe');
         return $friend_average > $foe_average ? 'friend' : 'foe';
