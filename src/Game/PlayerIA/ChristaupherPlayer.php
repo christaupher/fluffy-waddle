@@ -14,18 +14,44 @@ class ChristaupherPlayer extends Player
     protected $mySide;
     protected $opponentSide;
     protected $result;
+    protected $opponent_choices = array();
+	protected $opponent_scores = array();
+	protected $my_choices = array();
+	protected $my_scores = array();
+
+
+    private $start_choices = array(
+		'friend', 'friend', 'friend', 'friend',
+		'foe', 'foe', 'foe', 'foe', 'foe', 'foe'
+    );
+    
+    private function calculate_average($choice)
+	{
+		$total_score = 0;
+		$n = 0;
+		foreach ($this->my_choices as $i => $my_choice)
+			if ($my_choice === $choice)
+			{
+				$total_score += $this->my_scores[$i];
+				$n++;
+			}
+		return $total_score / $n;
+	}
 
     public function getChoice()
     {
+        $opponent_choices = $this->result->getChoicesFor($this->opponentSide);
+        $opponent_scores = $this->result->getScoresFor($this->opponentSide);
+        $my_choices = $this->result->getChoicesFor($this->mySide);
+        $my_scores = $this->result->getScoresFor($this->mySide);
 
-        if ($this->result->getLastChoiceFor($this->mySide) == 'friend'){
-            return parent::friendChoice();
-        }
-        return parent::foeChoice();
+        if (isset($this->start_choices[count($my_choices)]))
+            return $this->start_choices[count($my_choices)];
+        $friend_average = $this->calculate_average('friend');
+        $foe_average = $this->calculate_average('foe');
+        return $friend_average > $foe_average ? 'friend' : 'foe';
 
-        
-
-        
+ 
         // -------------------------------------    -----------------------------------------------------
         // How to get my Last Choice           ?    $this->result->getLastChoiceFor($this->mySide) -- if 0 (first round)
         // How to get the opponent Last Choice ?    $this->result->getLastChoiceFor($this->opponentSide) -- if 0 (first round)
@@ -49,7 +75,6 @@ class ChristaupherPlayer extends Player
         // -------------------------------------    -----------------------------------------------------
         // How can i display the result of each round ? $this->prettyDisplay()
         // -------------------------------------    -----------------------------------------------------
- 
         //return parent::friendChoice();
     }
  
