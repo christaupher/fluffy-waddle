@@ -21,7 +21,7 @@ class ChristaupherPlayer extends Player
 
 
     private $start_choices = array(
-		'friend', 'friend', 'friend', 'friend',
+		'friend', 'friend', 'foe', 'foe',
 		'foe', 'foe', 'foe', 'foe', 'foe', 'foe'
     );
     
@@ -50,6 +50,7 @@ class ChristaupherPlayer extends Player
         $friend_average = $this->calculate_average('friend');
         $foe_average = $this->calculate_average('foe');
         return $friend_average > $foe_average ? 'friend' : 'foe';
+
 
  
         // -------------------------------------    -----------------------------------------------------
