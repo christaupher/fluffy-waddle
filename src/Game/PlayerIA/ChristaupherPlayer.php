@@ -22,7 +22,7 @@ class ChristaupherPlayer extends Player
     // this is my starting choices I use more foe than friends
     private $start_choices = array(
 		'friend', 'friend', 'friend', 'friend',
-		'friend', 'friend', 'friend', 'foe', 'foe', 'foe'
+		'friend', 'friend', 'friend',  'foe', 'foe', 'foe'
     );
     
     // function to compute the average between my choices and his choices
